@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Egemen Tunca — Personal website</title>
+    <meta
+      name="description"
+      content="Egemen Tunca, co-founder of Purple Intelligence Inc. Where to find me."
+    />
+    <link rel="canonical" href="https://egementunca.com/" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://egementunca.com/" />
+    <meta property="og:site_name" content="Egemen Tunca" />
+    <meta property="og:title" content="Egemen Tunca" />
+    <meta property="og:description" content="Co-founder of Purple Intelligence Inc." />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Keep in sync with the visible links below. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Egemen Tunca",
+        "url": "https://egementunca.com/",
+        "jobTitle": "Co-Founder",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Purple Intelligence Inc.",
+          "url": "https://purple.tr/en/"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/egementunca/",
+          "https://github.com/egementunca",
+          "https://www.instagram.com/egementuncaa/"
+        ]
+      }
+    </script>
+
+    <style>
+      /* Tokens follow the Purple landing: white, violet-tinted ink, lilac
+         surfaces, square corners, Inter, and the receding grid behind it all. */
+      :root {
+        color-scheme: light dark;
+        --bg: #ffffff;
+        --ink: #15151c;
+        --body: #44424e;
+        --muted: #666675;
+        --line: #e7e1ec;
+        --line-strong: #cfc4d9;
+        --tint: #f4f1f6;
+        --card: #ffffff;
+        --focus: #7b668b;
+        --dot: #9933ff;
+        --feature: #181820;
+        --feature-hover: #35303e;
+        --feature-ink: #ffffff;
+        --feature-muted: rgb(255 255 255 / 64%);
+        --grid: rgb(52 38 72 / 30%);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #050505;
+          --ink: #f5f5f5;
+          --body: #c9c5d1;
+          --muted: #9d99a8;
+          --line: #2a2731;
+          --line-strong: #4a4356;
+          --tint: #17141c;
+          --card: #0a0a0c;
+          --focus: #b9a6c9;
+          --dot: #b266ff;
+          --feature: #f5f5f5;
+          --feature-hover: #e4dcec;
+          --feature-ink: #0d0d12;
+          --feature-muted: rgb(13 13 18 / 64%);
+          --grid: rgb(255 255 255 / 20%);
+        }
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        min-height: 100svh;
+        margin: 0;
+        overflow-x: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-feature-settings: "rlig" 1, "calt" 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* ── Receding grid, as on the landing hero ── */
+      .floor {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+        opacity: 0.5;
+        perspective: 400px;
+        /* Starts later than the landing's mask so the far edge of the plane
+           never draws a hard line above the name. */
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          transparent 14%,
+          #000 42%,
+          #000 72%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          transparent 14%,
+          #000 42%,
+          #000 72%,
+          transparent 100%
+        );
+      }
+      .floor-plane {
+        position: absolute;
+        inset: 0;
+        transform: rotateX(35deg);
+      }
+      .floor-lines {
+        position: absolute;
+        inset: 0% 0;
+        width: 600vw;
+        height: 300vh;
+        margin-left: -50%;
+        transform-origin: 100% 0 0;
+        background-image: linear-gradient(to right, var(--grid) 1px, transparent 0),
+          linear-gradient(to bottom, var(--grid) 1px, transparent 0);
+        background-size: 60px 60px;
+      }
+      .floor::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, var(--bg), transparent 90%);
+      }
+
+      /* ── Page ── */
+      main {
+        align-self: center;
+        width: min(100% - 44px, 620px);
+        margin-inline: auto;
+        padding-block: 56px 104px;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        color: var(--body);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+      .eyebrow::before {
+        content: "";
+        flex: none;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--dot);
+      }
+
+      h1 {
+        margin: 32px 0 0;
+        font-size: clamp(44px, 12.4vw, 76px);
+        font-weight: 650;
+        letter-spacing: -0.055em;
+        line-height: 1;
+        transform-origin: left 70%;
+        text-wrap: balance;
+      }
+
+      .where {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 26px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.4;
+      }
+      .where svg {
+        flex: none;
+        width: 16px;
+        height: 16px;
+        color: var(--focus);
+      }
+
+      .mail {
+        margin: 2px 0 0;
+      }
+      .mail a {
+        display: inline-block;
+        padding-block: 12px;
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 20px;
+        text-decoration: underline;
+        text-decoration-color: var(--line-strong);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 5px;
+        transition: text-decoration-color 160ms;
+      }
+      .mail a:hover {
+        text-decoration-color: currentColor;
+      }
+
+      h2 {
+        margin: 34px 0 12px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .links a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 84px;
+        padding: 0 20px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        color: var(--ink);
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.015em;
+        text-decoration: none;
+        transition: background-color 160ms, border-color 160ms;
+      }
+      .links a:hover {
+        border-color: var(--line-strong);
+        background: var(--tint);
+      }
+      .links .icon {
+        flex: none;
+        width: 20px;
+        height: 20px;
+      }
+      .links .go {
+        flex: none;
+        width: 18px;
+        height: 18px;
+        margin-left: auto;
+        color: var(--muted);
+        transition: transform 160ms, color 160ms;
+      }
+      .links a:hover .go {
+        color: var(--ink);
+        transform: translate(2px, -2px);
+      }
+
+      .links .feature {
+        grid-column: 1 / -1;
+      }
+      .feature a {
+        gap: 18px;
+        min-height: 92px;
+        padding: 0 26px;
+        border-color: var(--feature);
+        background: var(--feature);
+        color: var(--feature-ink);
+      }
+      .feature a:hover {
+        border-color: var(--feature-hover);
+        background: var(--feature-hover);
+      }
+      .feature .icon {
+        width: 22px;
+        height: 22px;
+      }
+      .feature .go,
+      .feature a:hover .go {
+        color: var(--feature-ink);
+      }
+      .feature small {
+        display: block;
+        margin-top: 5px;
+        color: var(--feature-muted);
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      :where(a):focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 560px) {
+        main {
+          padding-block: 44px 72px;
+        }
+        .links {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .links a {
+          min-height: 64px;
+        }
+        .feature a {
+          min-height: 84px;
+          padding: 0 20px;
+          gap: 14px;
+        }
+      }
+
+      /* A single entrance; static content is the default, including reduced motion. */
+      @media (prefers-reduced-motion: no-preference) {
+        .floor-lines {
+          animation: floor 15s linear infinite;
+        }
+        .eyebrow {
+          animation: soft-reveal 500ms ease-out both;
+        }
+        h1 {
+          animation: type-reveal 950ms 120ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        }
+        .where,
+        .mail {
+          animation: soft-reveal 600ms 620ms ease-out both;
+        }
+        h2,
+        .links {
+          animation: soft-reveal 650ms 860ms ease-out both;
+        }
+      }
+      @keyframes floor {
+        from {
+          transform: translateY(-50%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+      @keyframes type-reveal {
+        from {
+          opacity: 0;
+          filter: blur(12px);
+          transform: translateY(10px) scaleX(0.94);
+        }
+        to {
+          opacity: 1;
+          filter: blur(0);
+          transform: none;
+        }
+      }
+      @keyframes soft-reveal {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <symbol id="i-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+        <path d="M7 7h10v10" />
+        <path d="M7 17 17 7" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      </symbol>
+      <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+      </symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
+        <circle cx="12" cy="12" r="4.2" />
+        <path d="M17.4 6.6h.01" />
+      </symbol>
+      <symbol id="i-company" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+        <path d="M5 21V4h9v17" />
+        <path d="M14 10h5v11" />
+        <path d="M3 21h18" />
+        <path d="M8.5 8h2M8.5 12h2M8.5 16h2M16.5 14h.01M16.5 17.5h.01" />
+      </symbol>
+    </svg>
+
+    <div class="floor" aria-hidden="true">
+      <div class="floor-plane"><div class="floor-lines"></div></div>
+    </div>
+
+    <main>
+      <p class="eyebrow">Personal website</p>
+      <h1>Egemen Tunca</h1>
+
+      <p class="where">
+        <svg aria-hidden="true"><use href="#i-pin" /></svg>
+        Boston, MA, USA
+      </p>
+      <p class="mail"><a href="mailto:egemen@purple.software">egemen@purple.software</a></p>
+
+      <h2 id="links-title">Find me here</h2>
+      <ul class="links" aria-labelledby="links-title">
+        <li>
+          <a href="https://www.linkedin.com/in/egementunca/" rel="me noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>
+            LinkedIn
+            <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/egementunca" rel="me noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+            GitHub
+            <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/egementuncaa/" rel="me noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-instagram" /></svg>
+            Instagram
+            <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
+          </a>
+        </li>
+        <li class="feature">
+          <a href="https://purple.tr/en/" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-company" /></svg>
+            <span>
+              Purple Intelligence Inc.
+              <small>Co-Founder</small>
+            </span>
+            <svg class="go" aria-hidden="true"><use href="#i-go" /></svg>
+          </a>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>
